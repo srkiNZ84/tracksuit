@@ -7,13 +7,13 @@ on:
 
 jobs:
   build_app:
-    name: Build the Docker image
+    name: Build the App and the Docker image
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
       - name: Set up Deno
-        uses: denoland/setup-deno@v1
+        uses: denoland/setup-deno@v2
 
       - name: Build the server and client
         run: deno task build
