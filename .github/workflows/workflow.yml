@@ -17,6 +17,7 @@ jobs:
 
   build_app:
     name: Build the App and the Docker image
+    needs: build_infrastructure
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
