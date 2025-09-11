@@ -15,9 +15,9 @@ jobs:
       - name: Set up Deno
         uses: denoland/setup-deno@v1
 
-    - name: Build the server and client
-      run: deno task build
+      - name: Build the server and client
+        run: deno task build
 
-    - name: Build the Docker image
-      working-directory: server
-      run: docker build -t insights:latest .
+      - name: Build the Docker image
+        working-directory: server
+        run: docker build -t insights:latest .
