@@ -6,6 +6,15 @@ on:
       - main
 
 jobs:
+  build_infrastructure:
+    name: Build the infrastructure
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Ensure EKS cluster is available
+        run: echo "TODO"
+
   build_app:
     name: Build the App and the Docker image
     runs-on: ubuntu-latest
@@ -15,9 +24,28 @@ jobs:
       - name: Set up Deno
         uses: denoland/setup-deno@v2
 
+      - name: Run client tests
+        run: deno task test:client
+
+      - name: Run server tests
+        run: echo "TODO"
+
       - name: Build the server and client
         run: deno task build
 
-      - name: Build the Docker image
+      - name: Build the server Docker image
         working-directory: server
         run: docker build -t insights:latest .
+
+      - name: Push the server Docker image
+        run: echo "TODO"
+
+  deploy_server:
+    name: Deploy the server app
+    needs: build_app
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy the app
+        run: echo "TODO"
